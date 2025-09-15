@@ -30,6 +30,26 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,eyJpY29ucyI6W3sic2l6ZXMiOiIxOTJ4MTkyIiwiZm9ybWF0IjoicG5nIiwic3JjIjoiZGF0YTppbWFnZS9wbmctYmFzZTY0LFpXNTBjbVJsYm5Sc2IybGhjbDkwY21WemRHRmtaQzl3WldOamNnbDFaVzBnYkdsdVpTNXBaMjVsY2dwMlpYTnlaWFFuY2dweVpXRnNaWE4wY2dwbGNpOW5jZ3B5YVhOcGMya25kRzhnY2c1amJHeHZiV2x5Y2dkdWRXbHdiR2x1WldOeVpYQnBjeWdwMmJ5cDBjeWdwMmJ5cDFieTB4Y2dkeGJ5cDFaWGxrY3kxellXNXpiMnh1WkdWeWIzUjBhVnRxWlhNeWMyVW5jZ3A1Ym5SbGNua25iMjFsY2c1d2FYQmhjaTl5YjI5eVlXNXpjeTl5YjI5eWJYUnllUzl3WldOamNnMD0ifSx7InNpemVzIjoiNTEyeDUxMiIsImZvcm1hdCI6InBuZyIsInNyYyI6ImRhdGE6aW1hZ2UvcG5nLWJhc2U2NCxZVzUwY21SbGJuUnNiMmxoY2w5MGNtVnplWEJ5Y2dwMFp5OW5jZ3B3YVhOcGMya25kRzhnY2c1amJHeHZiV2x5Y2c1amJHeHZiV2x5Y2d4dllXNWtaWEpwWmlncFpXUnBiMjVrY2dwMWJ5MWxjeTV5WldKcGJYUnpjeWd5Ym5abGMzSnVjeWd3YVhCcGNiMmxyY3lncGJ5ZzFjMlZ5Y2d4eWMyaGhlZ2gzYlhCcGJtSnRkUzl6ZEdGMGRHbHZiaTlrY2c1aGJtSnRkUzl6ZEdGMGRHbHZiaTl2Y2c1d2FYQmhjaTRuY2d4dlhYUmhjbHBuYzNCcGJ5ZHlkR2hsY2dwbVpXRjBaWE4wY2cwPSJ9XSwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJuYW1lIjoiU2hhd2FybWEgQ291bnRlciIsInNob3J0X25hbWUiOiJTaGF3YXJtYSIsImJhY2tncm91bmRfY29sb3IiOiIjRjNGNEZGIiwiZGVzY3JpcHRpb24iOiJQcm9ncmVzc2l2ZSBCYXJhdSBFeGFtcGxlIGFwcC4ifQ==" />
+
+    <!-- PWA Service Worker Registration -->
+    <script type="module">
+      const serviceWorkerBlob = new Blob([`
+        self.addEventListener('fetch', (event) => {
+          // No caching or offline support needed for this simple app
+        });
+      `], { type: 'application/javascript' });
+
+      const serviceWorkerUrl = URL.createObjectURL(serviceWorkerBlob);
+
+      if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register(serviceWorkerUrl)
+              .then(reg => console.log('Service Worker registered', reg))
+              .catch(err => console.error('Service Worker registration failed', err));
+      }
+    </script>
 </head>
 <body>
 
